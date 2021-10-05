@@ -1,6 +1,6 @@
 // This repo is optional extra practice to use the underscore functions.
-// Here we'll be writing new functions, but these functions will use 
-// the underscore functions within them. 
+// Here we'll be writing new functions, but these functions will use
+// the underscore functions within them.
 
 /*
  *
@@ -23,6 +23,16 @@ var moreFruits = function(fruits) {
 // which are multiples of five.
 var multiplesOfFive = function(numbers) {
 
+  var count = 0;
+
+  _.each(numbers, function(number, index) {
+    if (number % 5 === 0) {
+      count += 1;
+    }
+  });
+
+  return count;
+
 };
 
 /*
@@ -34,17 +44,32 @@ var multiplesOfFive = function(numbers) {
 // use _.filter to return the fruits array with only the desired fruit.
 var onlyOneFruit = function(fruits, targetFruit) {
 
+  fruits = _.filter(fruits, function(fruit) {
+    return fruit === targetFruit;
+  });
+
+  return fruits;
 };
 
 // use _.filter to return the fruits array with only fruits
 // starting with the letter 'P'.
 var startsWith = function(fruits, letter) {
 
+  fruits = _.filter(fruits, function(fruit) {
+    return fruit[0] === letter;
+  });
+
+  return fruits;
 };
 
 // return a filtered array containing only cookie-type desserts.
 var cookiesOnly = function(desserts) {
 
+  var justCookies = _.filter(desserts, function(dessert) {
+    return dessert.type === 'cookie';
+  });
+
+  return justCookies;
 };
 
 /*
@@ -55,7 +80,22 @@ var cookiesOnly = function(desserts) {
 
 // return the total price of all products.
 var sumTotal = function(products) {
-  
+
+  var productPrices = [];
+
+  var totalPrice;
+
+  _.each(products, function(product, index, collection) {
+    productPrices.push(product.price);
+
+    totalPrice = _.reduce(productPrices, function(accumulator, number) {
+      return accumulator + number;
+    });
+
+  });
+
+  return totalPrice;
+
 };
 
 // return an object consisting of dessert types and how many of each.
@@ -68,7 +108,7 @@ var dessertCategories = function(desserts) {
 // movies that came out between 1990 and 2000.
 // TIP: use an array as your accumulator - don't push to an external array!
 var ninetiesKid = function(movies) {
-  
+
 };
 
 // return an boolean stating if there exists a movie with a shorter
@@ -98,7 +138,7 @@ var movieNight = function(movies, timeLimit) {
   ];
 */
 var applyCoupon = function(grocery, coupon) {
-    
+
 };
 
 // given an array of strings, use _.map to return a new array containing all
